@@ -20,11 +20,11 @@ def test_home_page(client):
 def test_upload_file(mock_extract_info, mock_extract_text, client):
     """Test file upload and analysis."""
     mock_extract_text.return_value = "This is a test text with critical threat."
-    mock_extract_info.return_value = [{'name': 'Test Threat', 'industry': 'Unknown', 'country': 'Unknown', 'threat_type': 'malware', 'severity': 'Critical'}]
+    mock_extract_info.return_value = [{'name': 'Test Threat', 'industry': 'Financial', 'country': 'United States', 'threat_type': 'malware', 'severity': 'Critical'}]
 
     data = {
         'file': (io.BytesIO(b"dummy pdf content"), 'test.pdf')
     }
     rv = client.post('/upload', data=data, content_type='multipart/form-data')
     assert rv.status_code == 200
-    assert rv.json == [{'name': 'Test Threat', 'industry': 'Unknown', 'country': 'Unknown', 'threat_type': 'malware', 'severity': 'Critical'}]
+    assert rv.json == [{'name': 'Test Threat', 'industry': 'Financial', 'country': 'United States', 'threat_type': 'malware', 'severity': 'Critical'}]

@@ -4,3 +4,4 @@ PyMuPDF
 spacy
 pytest
 scikit-learn
+pandas
