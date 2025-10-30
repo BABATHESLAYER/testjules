@@ -1,36 +1,37 @@
-# Iris Flower Classifier
+# Threat Analyzer
 
-This is a simple machine learning application that trains a logistic regression model to classify iris flowers into one of three species: setosa, versicolor, or virginica.
+This is a machine learning application that analyzes PDF documents to extract and classify cybersecurity threats. It uses a Flask-based web interface for uploading PDFs, a machine learning model for classifying threats, and a dashboard for displaying the results.
 
-## Setup
+## Features
 
-1. **Install Python 3.**
+-   **PDF Text Extraction:** Extracts plain text from uploaded PDF files.
+-   **Threat Classification:** Uses a Naive Bayes classifier to identify the type of threat (e.g., malware, phishing, DDoS).
+-   **Information Extraction:** Uses spaCy for Named Entity Recognition to identify potential threat actors and targets.
+-   **Web Dashboard:** Displays the analysis results in a clean, color-coded interface.
+-   **CSV Export:** Allows you to download a summary of the analysis.
 
-2. **Clone the repository.**
+## Running with Docker
 
-3. **Install the required dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+This application is containerized using Docker for easy setup and deployment.
 
-## Usage
+### Prerequisites
 
-### 1. Train the Model
+-   [Docker](https://docs.docker.com/get-docker/) installed on your machine.
 
-To train the model, run the following command from the root directory:
+### Build the Docker Image
 
-```bash
-python3 src/train.py
-```
-
-This will train the model and save it as `model.pkl`.
-
-### 2. Make Predictions
-
-To make predictions on new data, you can use the `src/predict.py` script. This script loads the trained model and makes predictions on some sample data.
+To build the Docker image, run the following command from the root of the repository:
 
 ```bash
-python3 src/predict.py
+docker build -t threat-analyzer .
 ```
 
-You can modify the `sample_data` in `src/predict.py` to make predictions on your own data.
+### Run the Docker Container
+
+Once the image is built, you can run the application in a Docker container with this command:
+
+```bash
+docker run -p 5000:5000 threat-analyzer
+```
+
+The application will be accessible in your web browser at `http://localhost:5000`.

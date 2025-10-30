@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, jsonify, Response, session
 import os
 import io
 import csv
@@ -6,9 +6,9 @@ import fitz  # PyMuPDF
 from .information_extractor import extract_information
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-threat_data = []
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -19,7 +19,6 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global threat_data
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'})
     file = request.files['file']
@@ -29,8 +28,8 @@ def upload_file():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(filepath)
         text = extract_text_from_pdf(filepath)
-        threat_data = extract_information(text)
-        return jsonify(threat_data)
+        session['threat_data'] = extract_information(text)
+        return jsonify(session['threat_data'])
 
 def extract_text_from_pdf(filepath):
     doc = fitz.open(filepath)
@@ -41,6 +40,7 @@ def extract_text_from_pdf(filepath):
 
 @app.route('/download')
 def download():
+    threat_data = session.get('threat_data', [])
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow(['Threat Name', 'Industry', 'Country', 'Threat Type', 'Severity'])
