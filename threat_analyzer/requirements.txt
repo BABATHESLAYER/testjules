@@ -1,0 +1,6 @@
+Flask
+werkzeug==2.0.1
+PyMuPDF
+spacy
+pytest
+scikit-learn
