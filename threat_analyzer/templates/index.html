@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Threat Analyzer</title>
+    <title>Threat Analyzer - Ministry of Home Affairs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
+    <header>
+        <div class="header-top">
+            <span class="flag">🇮🇳</span> Government of India
+        </div>
+        <div class="header-bottom">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/mha_logo.svg') }}" alt="Ministry of Home Affairs Logo">
+            </div>
+            <div class="header-text">
+                <h2>गृह मंत्रालय</h2>
+                <h1>Ministry of Home Affairs</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
         <h1>Upload PDF for Threat Analysis</h1>
         <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" name="file" accept=".pdf" required>
@@ -15,7 +30,23 @@
         </form>
         <div id="results"></div>
         <a href="/download" id="download-link" class="hidden">Download Summary</a>
-    </div>
+    </main>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='images/nic_logo.svg') }}" alt="NIC Logo">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 - Copyright UX4G. All rights reserved. Powered by NeGD</p>
+            <ul>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

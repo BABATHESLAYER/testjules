@@ -1,66 +1,183 @@
+/* General Body Styles */
 body {
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 0;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
     background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-grow: 1;
 }
 
-h1 {
+/* Header Styles */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-top {
+    background-color: #6a1b9a; /* Matching the purple from the image */
+    color: white;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+}
+
+.header-top .flag {
+    margin-right: 0.5rem;
+}
+
+.header-bottom {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-bottom .logo img {
+    height: 60px; /* Placeholder */
+    margin-right: 1.5rem;
+}
+
+.header-bottom .header-text h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.header-bottom .header-text h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+
+/* Main Content Styles */
+main h1 {
     text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
 }
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 input[type="file"] {
-    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 4px;
 }
 
-button {
-    padding: 10px 20px;
-    background: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #555;
-}
-
-#results {
-    margin-top: 20px;
-}
-
-.severity-critical {
-    background-color: #ff0000;
+button[type="submit"] {
+    background-color: #6a1b9a;
     color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.severity-high {
-    background-color: #ff6600;
+button[type="submit"]:hover {
+    background-color: #4a148c;
 }
 
-.severity-medium {
-    background-color: #ffff00;
+/* Results Table Styles */
+#results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
 }
 
-.severity-low {
-    background-color: #00ff00;
+#results th, #results td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+#results th {
+    background-color: #f2f2f2;
+}
+
+/* Severity Colors */
+.severity-critical { background-color: #b71c1c; color: white; }
+.severity-high { background-color: #d32f2f; color: white; }
+.severity-medium { background-color: #ffc107; }
+.severity-low { background-color: #4caf50; }
+
+
+/* Download Link */
+#download-link {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #1565c0;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
 }
 
 .hidden {
     display: none;
+}
+
+/* Footer Styles */
+footer {
+    margin-top: auto;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem 2rem;
+    border-top: 1px solid #ddd;
+}
+
+.footer-logo img, .footer-powered-by img {
+    height: 40px; /* Placeholder */
+}
+
+.footer-powered-by {
+    text-align: right;
+}
+
+.footer-bottom {
+    background-color: #6a1b9a;
+    color: white;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.footer-bottom ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-bottom a {
+    color: white;
+    text-decoration: none;
 }
